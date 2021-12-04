@@ -1,0 +1,32 @@
+public int Min(int [][] prev_board, int prev_i, int prev_j, int depth){
+        if ( depth == maxDepth || isFinished(prev_board)) {
+            return getScore(prev_board);
+        }
+        OthelloGame.setAction(prev_board, prev_i, prev_j, color);
+        int min_score = Integer.MAX_VALUE;
+
+        LinkedList<OthelloAction> actions = new LinkedList<OthelloAction>();
+        int f;
+        int max_f = 0;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if(OthelloGame.isValid(prev_board, i, j, 1-color)) {
+                    f = OthelloGame.setAction(Utils.copy(prev_board), i, j, 1-color);
+                    if (f > max_f) {
+                        actions.clear();
+                        actions.add(new OthelloAction(i, j));
+                        max_f = f;
+                    } else if (f == max_f) {
+                        actions.add(new OthelloAction(i, j));
+                    }
+                }
+            }
+        }
+
+        int value;
+        for (OthelloAction a:actions) {
+            min_score = Math.min(Max(Utils.copy(prev_board), a.i, a.j, depth), min_score);
+        }
+
+        return min_score;
+    }

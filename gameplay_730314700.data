@@ -1,0 +1,4 @@
+"game.oth.OthelloGame"
+["1234567890","10","3","2000","game.oth.players.GreedyPlayer","Agent"]
+{"first":{"i":6,"j":5},"second":0}
+{"second":2000000002}
